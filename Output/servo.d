@@ -1,0 +1,30 @@
+.\Output\servo.o: Drivers\Servo.c
+.\Output\servo.o: Drivers\Servo.h
+.\Output\servo.o: .\User\Global.h
+.\Output\servo.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\servo.o: .\CMSIS\stm32f10x.h
+.\Output\servo.o: .\CMSIS\core_cm3.h
+.\Output\servo.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\servo.o: .\CMSIS\system_stm32f10x.h
+.\Output\servo.o: .\User\stm32f10x_conf.h
+.\Output\servo.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\servo.o: .\CMSIS\stm32f10x.h
+.\Output\servo.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\servo.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\servo.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\servo.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\servo.o: .\Libraries\inc\misc.h
+.\Output\servo.o: .\User\main.h
+.\Output\servo.o: .\User\Global.h
+.\Output\servo.o: .\User\Config.h
+.\Output\servo.o: .\User\stm32f10x_it.h
+.\Output\servo.o: .\Drivers\Delay.h
+.\Output\servo.o: .\Drivers\Encoder.h
+.\Output\servo.o: .\Drivers\IOinput.h
+.\Output\servo.o: .\Drivers\IOoutput.h
+.\Output\servo.o: .\Drivers\Motor.h
+.\Output\servo.o: .\Drivers\Sensor.h
+.\Output\servo.o: .\Drivers\Servo.h
+.\Output\servo.o: .\Drivers\Usart.h
+.\Output\servo.o: .\Drivers\Zlg7290.h
+.\Output\servo.o: .\Drivers\Pid.h

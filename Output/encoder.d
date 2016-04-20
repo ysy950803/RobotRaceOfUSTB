@@ -1,0 +1,30 @@
+.\Output\encoder.o: Drivers\Encoder.c
+.\Output\encoder.o: Drivers\Encoder.h
+.\Output\encoder.o: .\User\Global.h
+.\Output\encoder.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\encoder.o: .\CMSIS\stm32f10x.h
+.\Output\encoder.o: .\CMSIS\core_cm3.h
+.\Output\encoder.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\encoder.o: .\CMSIS\system_stm32f10x.h
+.\Output\encoder.o: .\User\stm32f10x_conf.h
+.\Output\encoder.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\encoder.o: .\CMSIS\stm32f10x.h
+.\Output\encoder.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\encoder.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\encoder.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\encoder.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\encoder.o: .\Libraries\inc\misc.h
+.\Output\encoder.o: .\User\main.h
+.\Output\encoder.o: .\User\Global.h
+.\Output\encoder.o: .\User\Config.h
+.\Output\encoder.o: .\User\stm32f10x_it.h
+.\Output\encoder.o: .\Drivers\Delay.h
+.\Output\encoder.o: .\Drivers\Encoder.h
+.\Output\encoder.o: .\Drivers\IOinput.h
+.\Output\encoder.o: .\Drivers\IOoutput.h
+.\Output\encoder.o: .\Drivers\Motor.h
+.\Output\encoder.o: .\Drivers\Sensor.h
+.\Output\encoder.o: .\Drivers\Servo.h
+.\Output\encoder.o: .\Drivers\Usart.h
+.\Output\encoder.o: .\Drivers\Zlg7290.h
+.\Output\encoder.o: .\Drivers\Pid.h

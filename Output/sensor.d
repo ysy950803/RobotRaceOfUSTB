@@ -1,0 +1,30 @@
+.\Output\sensor.o: Drivers\Sensor.c
+.\Output\sensor.o: Drivers\Sensor.h
+.\Output\sensor.o: .\User\Global.h
+.\Output\sensor.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\sensor.o: .\CMSIS\stm32f10x.h
+.\Output\sensor.o: .\CMSIS\core_cm3.h
+.\Output\sensor.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\sensor.o: .\CMSIS\system_stm32f10x.h
+.\Output\sensor.o: .\User\stm32f10x_conf.h
+.\Output\sensor.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\sensor.o: .\CMSIS\stm32f10x.h
+.\Output\sensor.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\sensor.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\sensor.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\sensor.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\sensor.o: .\Libraries\inc\misc.h
+.\Output\sensor.o: .\User\main.h
+.\Output\sensor.o: .\User\Global.h
+.\Output\sensor.o: .\User\Config.h
+.\Output\sensor.o: .\User\stm32f10x_it.h
+.\Output\sensor.o: .\Drivers\Delay.h
+.\Output\sensor.o: .\Drivers\Encoder.h
+.\Output\sensor.o: .\Drivers\IOinput.h
+.\Output\sensor.o: .\Drivers\IOoutput.h
+.\Output\sensor.o: .\Drivers\Motor.h
+.\Output\sensor.o: .\Drivers\Sensor.h
+.\Output\sensor.o: .\Drivers\Servo.h
+.\Output\sensor.o: .\Drivers\Usart.h
+.\Output\sensor.o: .\Drivers\Zlg7290.h
+.\Output\sensor.o: .\Drivers\Pid.h

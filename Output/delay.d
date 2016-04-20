@@ -1,0 +1,30 @@
+.\Output\delay.o: Drivers\Delay.c
+.\Output\delay.o: Drivers\Delay.h
+.\Output\delay.o: .\User\Global.h
+.\Output\delay.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\delay.o: .\CMSIS\stm32f10x.h
+.\Output\delay.o: .\CMSIS\core_cm3.h
+.\Output\delay.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\delay.o: .\CMSIS\system_stm32f10x.h
+.\Output\delay.o: .\User\stm32f10x_conf.h
+.\Output\delay.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\delay.o: .\CMSIS\stm32f10x.h
+.\Output\delay.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\delay.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\delay.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\delay.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\delay.o: .\Libraries\inc\misc.h
+.\Output\delay.o: .\User\main.h
+.\Output\delay.o: .\User\Global.h
+.\Output\delay.o: .\User\Config.h
+.\Output\delay.o: .\User\stm32f10x_it.h
+.\Output\delay.o: .\Drivers\Delay.h
+.\Output\delay.o: .\Drivers\Encoder.h
+.\Output\delay.o: .\Drivers\IOinput.h
+.\Output\delay.o: .\Drivers\IOoutput.h
+.\Output\delay.o: .\Drivers\Motor.h
+.\Output\delay.o: .\Drivers\Sensor.h
+.\Output\delay.o: .\Drivers\Servo.h
+.\Output\delay.o: .\Drivers\Usart.h
+.\Output\delay.o: .\Drivers\Zlg7290.h
+.\Output\delay.o: .\Drivers\Pid.h

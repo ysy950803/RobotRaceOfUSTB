@@ -1,0 +1,30 @@
+.\Output\zlg7290.o: Drivers\Zlg7290.c
+.\Output\zlg7290.o: Drivers\zlg7290.h
+.\Output\zlg7290.o: .\User\Global.h
+.\Output\zlg7290.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\zlg7290.o: .\CMSIS\stm32f10x.h
+.\Output\zlg7290.o: .\CMSIS\core_cm3.h
+.\Output\zlg7290.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\zlg7290.o: .\CMSIS\system_stm32f10x.h
+.\Output\zlg7290.o: .\User\stm32f10x_conf.h
+.\Output\zlg7290.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\zlg7290.o: .\CMSIS\stm32f10x.h
+.\Output\zlg7290.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\zlg7290.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\zlg7290.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\zlg7290.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\zlg7290.o: .\Libraries\inc\misc.h
+.\Output\zlg7290.o: .\User\main.h
+.\Output\zlg7290.o: .\User\Global.h
+.\Output\zlg7290.o: .\User\Config.h
+.\Output\zlg7290.o: .\User\stm32f10x_it.h
+.\Output\zlg7290.o: .\Drivers\Delay.h
+.\Output\zlg7290.o: .\Drivers\Encoder.h
+.\Output\zlg7290.o: .\Drivers\IOinput.h
+.\Output\zlg7290.o: .\Drivers\IOoutput.h
+.\Output\zlg7290.o: .\Drivers\Motor.h
+.\Output\zlg7290.o: .\Drivers\Sensor.h
+.\Output\zlg7290.o: .\Drivers\Servo.h
+.\Output\zlg7290.o: .\Drivers\Usart.h
+.\Output\zlg7290.o: .\Drivers\Zlg7290.h
+.\Output\zlg7290.o: .\Drivers\Pid.h

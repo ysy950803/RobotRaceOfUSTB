@@ -1,0 +1,548 @@
+/*----------------------------  I N C L U D E S  -----------------------------*/
+#include "zlg7290.h"
+
+uint8 ack ;
+//static uint8 flag = 0;
+
+/*---------------------------  F U N C T I O N S  ----------------------------*/
+void IIC_RCC_Configration()
+{
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+}
+
+void IIC_CLK_Configration()//PB.10
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+}
+
+void IIC_SDA_DIR(u8 dir)//PB.11
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+    if(dir)
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    else
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+}
+
+/**********************************************************
+Function Name: KeyBoardInit
+Description: 键盘初始化
+Inputs: None
+Outputs: None
+Notes:
+	将键盘端口初始化
+***********************************************************/
+void ZLG7290Init(void)
+{
+   // IIC_RCC_Configration();
+    IIC_CLK_Configration();
+    IIC_SDA_DIR(1);
+
+    SCL_LOW;
+    SDA_LOW;
+    Delay_ms(1);
+    SCL_HIGH;
+    SDA_HIGH;
+}
+
+/**********************************************************
+Function Name: Start
+Description: IIC开始
+Inputs:  None
+Outputs: None
+Notes:
+	IIC通信开始
+***********************************************************/
+static void Start(void)
+{
+    SDA_HIGH ;
+    SCL_HIGH ;                      //SCL高
+    Delay_us(10) ;
+    SDA_LOW ;                       //SDA先拉低
+    Delay_us(10) ;
+    SCL_LOW ;		            //SCL再拉低
+    Delay_us(10) ;
+}
+
+/**********************************************************
+Function Name: Stop
+Description: IIC结束
+Inputs:  None
+Outputs: None
+Notes:
+	IIC通信结束
+***********************************************************/
+static void Stop(void)
+{
+    SDA_LOW ;		     //SDA低
+    Delay_us(1) ;
+    SCL_HIGH ;            //SCL先拉高
+    Delay_us(1) ;
+    SDA_HIGH ;		     //SDA再拉高
+    Delay_us(10) ;
+}
+
+/**********************************************************
+Function Name: WriteByte
+Description: 写一个字节
+Inputs:  None
+Outputs: None
+Notes: 向总线写入一个字节并在ack中记录是否收到应答信号
+***********************************************************/
+static void WriteByte(uint8 out_byte)
+{
+    uint8 i ;
+    SCL_LOW ;
+    for(i = 0; i < 8; i++)
+    {
+        if( (out_byte << i) & 0x80 )
+        {
+            SDA_HIGH ;
+        }
+        else
+        {
+            SDA_LOW ;
+        }
+        Delay_us(1) ;
+        SCL_HIGH ;
+        Delay_us(1) ;
+        SCL_LOW ;
+    }
+    Delay_us(5) ;
+    SDA_HIGH ;
+    Delay_us(5) ;
+    SCL_HIGH ;
+    IIC_SDA_DIR(0);
+    Delay_us(5) ;
+    if(READ_SDA)//?????
+    {
+        ack = 0 ;
+    } else
+    {
+        ack = 1 ;        /*判断是否接收到应答信号*/
+    }
+    IIC_SDA_DIR(1);
+    SCL_LOW ;
+}
+
+/**********************************************************
+Function Name: ReadByte
+Description: 读一个字节
+Inputs:  None
+Outputs: None
+Notes:
+	从总线读取一个字节的数据
+***********************************************************/
+static uint8 ReadByte(void)
+{
+    uint8 i ;
+    uint8 rec_byte = 0 ;
+
+    SDA_HIGH;                                     //接收模式先把SDA拉高
+    Delay_us(5) ;
+    IIC_SDA_DIR(0);                               //把SDA改变为输入
+    Delay_us(5) ;
+
+    for(i = 0; i < 8; i++)
+    {
+        Delay_us(5) ;
+        SCL_LOW ;
+        Delay_us(5) ;
+        SCL_HIGH ;
+        rec_byte <<= 1 ;
+        if(READ_SDA)
+        {
+            rec_byte += 0x01 ;
+        }
+        Delay_us(5) ;
+    }
+    SCL_LOW ;
+    Delay_us(5) ;
+    IIC_SDA_DIR(1);
+    return rec_byte ;
+}
+
+/**********************************************************
+Function Name: GetAck
+Description:  读取应答
+Inputs:  None
+Outputs:  uint8 ack即应答
+Notes:
+	从机在收到每个字节的数据后，要产生应答位
+	从机在收到最后1 个字节的数据后，一般要产生非应答位
+	0：从机应答
+	1：从机非应答
+***********************************************************/
+uint8 GetAck(void)
+{
+    uint8 ack;
+
+    SCL_LOW ;                             //SCL为低,由低变高读应答
+    SDA_HIGH;                             //接收模式先把SDA拉高
+    Delay_us(5) ;
+    IIC_SDA_DIR(0);   		//把SDA改变为输入
+    Delay_us(5) ;
+    SCL_HIGH ;              //SCL变为高
+    Delay_us(5) ;
+    ack = READ_SDA ;
+    Delay_us(5) ;
+
+    IIC_SDA_DIR(1);
+    return ack ;
+}
+
+/**********************************************************
+Function Name: PutAck
+Description:  产生一个应答或非应答位
+Inputs:  None
+Outputs:  None
+Notes:
+	主机在接收完每一个字节的数据后，都应当产生应答位
+	主机在接收完最后一个字节的数据后，应当产生非应答位
+	ack=0：主机产生应答位
+	ack=1：主机产生非应答位
+***********************************************************/
+static void PutAck(uint8 ack)
+{
+    if (ack)
+    {
+        SDA_HIGH;
+    }
+    else
+    {
+        SDA_LOW;
+    }
+
+    Delay_us(5) ;
+    SCL_HIGH;
+    Delay_us(5) ;
+    SCL_LOW ;
+    Delay_us(5) ;
+}
+
+/**********************************************************
+Function Name: IICSendByte
+Description: IIC发送一个字节的数据
+Inputs:  uint8 dev_add, uint8 reg_add, uint8 out_byte
+Outputs: None
+Notes:
+	IIC向目标从机发送一个字节的数据
+	dev_add 从机地址
+	reg_add 目标从机寄存器
+	out_bye 发送的数据
+***********************************************************/
+void IICSendByte(uint8 dev_add, uint8 reg_add, uint8 out_byte)
+{
+    Start() ;                                               //发送Start信号
+    WriteByte(dev_add) ;                            //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(reg_add) ;
+    //while(!ack) ;
+    WriteByte(out_byte) ;
+    //while(!ack) ;
+    Stop() ;
+}
+
+
+/**********************************************************
+Function Name: IICSendTwoByte
+Description: IIC向目标从机发送两个数据
+Inputs:  uint8 dev_add, uint8 reg_add, uint8 out_byte1, uint8 out_byte2
+Outputs: None
+Notes:
+	IIC向目标从机发送两个个字节的数据
+	dev_add   目标从机的
+	reg_add   目标从机的目标寄存器
+	out_byte1 发送的第一个数据
+	out_byte2 发送的第二个数据
+***********************************************************/
+void IICSendTwoByte(uint8 dev_add, uint8 reg_add, uint8 out_byte1, uint8 out_byte2)
+{
+    Start() ;                                     //发送Start信号
+    WriteByte(dev_add) ;                 //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(reg_add) ;
+    //while(!ack) ;
+    WriteByte(out_byte1) ;
+    //while(!ack) ;
+    WriteByte(out_byte2) ;
+    //while(!ack) ;
+    Stop() ;
+    Delay_ms(1) ;
+}
+
+/**********************************************************
+Function Name: IICRecieveByte
+Description: 接收一个字节
+Inputs:  dev_add,reg_add,out_bye
+Outputs: INT8 rec_byte
+Notes:
+***********************************************************/
+uint8 IICRecieveByte(uint8 dev_add, uint8 reg_add)
+{
+    uint8 rec_byte ;
+    Start() ;                                          //发送Start信号
+    WriteByte(dev_add) ;
+    //while(!ack) ;
+    WriteByte(reg_add) ;
+    //while(!ack) ;
+
+    Start() ;
+    WriteByte(dev_add + 0x01) ;          			//发送器件地址和读信号 ?????
+    //while(!ack) ;
+
+    rec_byte = ReadByte() ;
+    PutAck(1) ;
+    Stop() ;
+    return rec_byte ;
+}
+
+/**********************************************************
+Function Name: SwitchNumber
+Description: 	 switch key_code to number
+Inputs:
+Outputs:
+Notes:
+***********************************************************/
+uint8 SwitchNumber(uint8 key_code)
+{
+    uint8 result ;
+    switch(key_code)
+    {
+    case 26 :
+        result = 0 ;
+        break ;//0
+    case 1 :
+        result = 1 ;
+        break ;//1
+    case 2 :
+        result = 2 ;
+        break ;//2
+    case 3 :
+        result = 3 ;
+        break ;//3
+    case 9 :
+        result = 4 ;
+        break ;//4
+    case 10 :
+        result = 5 ;
+        break ;//5
+    case 11 :
+        result = 6 ;
+        break ;//6
+    case 17 :
+        result = 7 ;
+        break ;//7
+    case 18 :
+        result = 8 ;
+        break ;//8
+    case 19 :
+        result = 9 ;
+        break ;//9
+    case 4 :
+        result = 10 ;
+        break ;//A
+    case 12 :
+        result = 11 ;
+        break ;//B
+    case 20 :
+        result = 12 ;
+        break ;//C
+    case 28 :
+        result = 13 ;
+        break ;//D
+    case 25 :
+        result = 14 ;
+        break ;//*
+    case 27 :
+        result = 15 ;
+        break ;//#
+    default :
+        result = 16 ;
+        break ;
+
+    }
+    return result ;
+}
+
+/**********************************************************
+Function Name: SendSingleCommandToZLG7290
+Description: IIC向ZLG7290发送单条指令
+Inputs:  out_byte
+Outputs: None
+Notes:
+	向ZLG7290发送一个字节的命令
+***********************************************************/
+void SendSingleCommandToZLG7290(uint8 command)
+{
+    Start() ;                                 //发送Start信号
+    WriteByte(0x70) ;                   //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(0x07) ;
+    //while(!ack) ;
+    WriteByte(command) ;
+    //while(!ack) ;
+    Stop() ;
+}
+
+/**********************************************************
+Function Name: SendCompuondCommandZLG7290
+Description: IIC向ZLG7290发送复合指令
+Inputs:  command1， command2
+Outputs: None
+Notes:
+	向ZLG7290发送两个字节的命令
+***********************************************************/
+void SendCompuondCommandToZLG7290(uint8 command1, uint8 command2)
+{
+    Start() ;                              //发送Start信号
+    WriteByte(0x70) ;                //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(0x07) ;
+    //while(!ack) ;
+    WriteByte(command1) ;
+    //while(!ack) ;
+    WriteByte(command2) ;
+    //while(!ack) ;
+    Stop() ;
+    Delay_ms(1) ;
+}
+
+
+/**********************************************************
+Function Name: ZLG7290ClearAll
+Description:   清除数码管显示
+Inputs:  None
+Outputs: None
+Notes:
+	清楚数码管的显示
+***********************************************************/
+void ZLG7290ClearAll(void)
+{
+    uint8 i ;
+    Start() ;
+    WriteByte(0x70) ;                 //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(0x10) ;
+    //while(!ack) ;
+
+    for(i = 0; i < 8; i++)
+    {
+        WriteByte(0x00) ;
+        while(!ack) ;
+    }
+    Stop() ;
+}
+
+/**********************************************************
+Function Name: UpdataZLG7290
+Description: IIC更新数码管某一位所显示的数据
+Inputs:  which , display , point
+Outputs: None
+Notes:
+	更新数码管某一位所显示的数据
+	which：更新哪一位(0 ~ 7)
+	display：更新成什么(0 ~ 15)
+	point : 是否有小数点(0/1)
+***********************************************************/
+void UpdataZLG7290(uint8 which,uint8 display,uint8 point)
+{
+    if (which > 7) which = 7 ;
+
+    Start() ;                                               //发送Start信号
+    WriteByte(0x70) ;                                 //发送器件地址和写信号
+    //while(!ack) ;
+    WriteByte(0x07) ;
+    //while(!ack) ;
+    WriteByte(0x60 | which) ;                           //???
+    //while(!ack) ;
+    WriteByte(display | (point << 7)) ;
+    //while(!ack) ;
+    Stop() ;
+    Delay_ms(1) ;
+}
+
+/**********************************************************
+Function Name: ReadKeys
+Description: IIC读取键盘值
+Inputs:  None
+Outputs: read
+Notes:
+	读取键盘的值，返回值就直接是按下的值(已转换)
+***********************************************************/
+uint8 ReadKeys(void)
+{
+    uint8 read = 0 ;
+    Start() ;                                       //发送Start信号
+    WriteByte(0x70) ;
+    //while(!ack) ;
+    WriteByte(0x01) ;
+    //while(!ack) ;
+
+    Start() ;
+    WriteByte(0x71) ;                         //发送器件地址和读信号
+    //while(!ack) ;
+
+    read = ReadByte() ;
+    PutAck(1) ;
+    Stop() ;
+    read = SwitchNumber(read) ;
+    return read;
+}
+/**********************************************************
+Function Name: KeyBoardShowLong
+Description: 键盘后三位显示无符号整型数
+Inputs:  show
+Outputs: None
+Notes:
+	键盘后三位显示无符号整型数
+***********************************************************/
+void KeyBoardShowLong(uint16 show)
+{
+    uint8 display[3];
+    display[0] = show / 100 ;
+    display[1] = show % 100 / 10 ;
+    display[2] = show % 10 ;
+    UpdataZLG7290(1, display[0], 0) ;
+    UpdataZLG7290(2, display[1], 0) ;
+    UpdataZLG7290(3, display[2], 0) ;
+
+}
+
+
+/***********************************************************************
+Function Name: ReadKeyAndDisplay
+Description: IIC读取三个键盘值并且显示
+Inputs:  None
+Outputs: None
+Notes: IIC读取三个键盘值并且同时显示，按下三个键之后再在后三位显示
+************************************************************************/
+uint16 ReadKeyAndDisplay(void)
+{
+    uint16 readkey = 0;
+    uint8 keycounter = 0 ;
+    uint8 read[3] ;
+
+    for(keycounter = 0; keycounter < 3; keycounter++) {
+        while(ReadKeys() == 16); //按键没有按下时 一直循环扫描 直到 ReadKeys() ！= 16
+        read[keycounter] = ReadKeys();
+        if(read[keycounter] < 9)
+        {
+             UpdataZLG7290(keycounter+4, read[keycounter], 0) ;
+        }
+        while(ReadKeys() != 16);//按键没松开时，等待。。。。
+    }
+    readkey = read[0]*100 + read[1]*10 + read[2];
+	Delay_ms(1000) ;
+    ZLG7290ClearAll() ;
+    return readkey;
+}

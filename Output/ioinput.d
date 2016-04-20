@@ -1,0 +1,30 @@
+.\Output\ioinput.o: Drivers\IOinput.c
+.\Output\ioinput.o: Drivers\IOinput.h
+.\Output\ioinput.o: .\User\Global.h
+.\Output\ioinput.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdio.h
+.\Output\ioinput.o: .\CMSIS\stm32f10x.h
+.\Output\ioinput.o: .\CMSIS\core_cm3.h
+.\Output\ioinput.o: E:\Program Files\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Output\ioinput.o: .\CMSIS\system_stm32f10x.h
+.\Output\ioinput.o: .\User\stm32f10x_conf.h
+.\Output\ioinput.o: .\Libraries\inc\stm32f10x_adc.h
+.\Output\ioinput.o: .\CMSIS\stm32f10x.h
+.\Output\ioinput.o: .\Libraries\inc\stm32f10x_gpio.h
+.\Output\ioinput.o: .\Libraries\inc\stm32f10x_rcc.h
+.\Output\ioinput.o: .\Libraries\inc\stm32f10x_tim.h
+.\Output\ioinput.o: .\Libraries\inc\stm32f10x_usart.h
+.\Output\ioinput.o: .\Libraries\inc\misc.h
+.\Output\ioinput.o: .\User\main.h
+.\Output\ioinput.o: .\User\Global.h
+.\Output\ioinput.o: .\User\Config.h
+.\Output\ioinput.o: .\User\stm32f10x_it.h
+.\Output\ioinput.o: .\Drivers\Delay.h
+.\Output\ioinput.o: .\Drivers\Encoder.h
+.\Output\ioinput.o: .\Drivers\IOinput.h
+.\Output\ioinput.o: .\Drivers\IOoutput.h
+.\Output\ioinput.o: .\Drivers\Motor.h
+.\Output\ioinput.o: .\Drivers\Sensor.h
+.\Output\ioinput.o: .\Drivers\Servo.h
+.\Output\ioinput.o: .\Drivers\Usart.h
+.\Output\ioinput.o: .\Drivers\Zlg7290.h
+.\Output\ioinput.o: .\Drivers\Pid.h
