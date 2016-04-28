@@ -25,6 +25,7 @@ void Test_Motor(void);   //电机测试
 void Test_Servo(void);   //舵机测试
 void Test_Encoder(void); //编码器测试
 void Test_V_PID(void);   //电机闭环测试
+int Current_State(UINT8 HL, UINT8 HR, UINT8 BL, UINT8 BR);
 void Test_Main(void);
 
 
