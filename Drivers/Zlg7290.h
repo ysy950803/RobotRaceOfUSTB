@@ -32,7 +32,5 @@ extern uint8 ReadKeys(void) ;
 extern void KeyBoardShowLong(uint16 show);
 extern int ReadKeyAndDisplay(void);
 
-extern void Test(void);
-
 #endif
 

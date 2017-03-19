@@ -19,7 +19,7 @@ void Delay_us(UINT32 n)
 
     for(i = 0; i < n; i++)
     {
-        for(j = 0; j < 60; j++)
+        for(j = 0; j < 50; j++)
         {
             // Delay n us
         }
@@ -41,7 +41,7 @@ void Delay_ms(UINT16 n)
 
     for(i = 0; i < n; i++)
     {
-        for(j = 0; j < 1040; j++)
+        for(j = 0; j < 8000; j++)
         {
             // Delay n ms
         }

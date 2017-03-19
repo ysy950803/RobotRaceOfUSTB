@@ -463,12 +463,12 @@ ARM Macro Assembler    Page 8
   305 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\Output
-\startup_stm32f10x_md.d -o.\Output\startup_stm32f10x_md.o -I"E:\Program Files\K
-eil\ARM\RV31\INC" -I"E:\Program Files\Keil\ARM\CMSIS\Include" -I"E:\Program Fil
-es\Keil\ARM\Inc\ST\STM32F10x" --predefine="__EVAL SETA 1" --predefine="__MICROL
-IB SETA 1" --list=.\List\startup_stm32f10x_md.lst Startup\startup_stm32f10x_md.
-s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\output\startup_stm32f10x_md.d -o.\output\startup_stm32f10x_md.o 
+-I.\User -IE:\Robot\Robot2017\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.
+0 -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__MIC
+ROLIB SETA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_H
+D SETA 1" --list=.\list\startup_stm32f10x_md.lst Startup\startup_stm32f10x_md.s
 
 
 
@@ -1175,4 +1175,4 @@ Symbol: __main
       At line 135 in file Startup\startup_stm32f10x_md.s
 Comment: __main used once
 2 symbols
-404 symbols in table
+406 symbols in table

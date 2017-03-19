@@ -21,19 +21,19 @@ void InputIOInit(void)
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     GPIO_InitStructure.GPIO_Pin = IN1_PIN|IN9_PIN|IN13_PIN|IN14_PIN|IN15_PIN|IN16_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; // importance
+    //GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(IN1_16_GPIO, &GPIO_InitStructure);
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
     GPIO_InitStructure.GPIO_Pin = IN2_PIN|IN3_PIN|IN4_PIN|IN5_PIN|IN6_PIN|IN7_PIN|IN8_PIN|IN10_PIN|IN11_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    //GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(IN2_11_GPIO, &GPIO_InitStructure);
 
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
     GPIO_InitStructure.GPIO_Pin = IN12_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    //GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(IN12_GPIO, &GPIO_InitStructure);
 }
 

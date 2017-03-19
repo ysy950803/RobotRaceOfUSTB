@@ -3,7 +3,7 @@
 
 /*-----------------------------------------  I N C L U D E S  -----------------------------------------*/
 #include "Global.h"
-#include "Config.h"
+
 /*---------------------------------------  D E F I N I T I O N  ---------------------------------------*/
 
 /*-------------------------------------------  M A C R O S  -------------------------------------------*/
@@ -25,11 +25,18 @@ void Test_Motor(void);   //µÁª˙≤‚ ‘
 void Test_Servo(void);   //∂Êª˙≤‚ ‘
 void Test_Encoder(void); //±‡¬Î∆˜≤‚ ‘
 void Test_V_PID(void);   //µÁª˙±’ª∑≤‚ ‘
-void Escape(UINT8 mode, UINT16 time, UINT16 v_left, UINT16 v_right);
-int Current_State(UINT8 HL, UINT8 HR, UINT8 BL, UINT8 BR);
-void Test_Main(void);
 
+void readSensorByKey(void);
+void ctrlServoBySensor(void);
+void ctrlMotorBySensor(void);
+void ctrlServoByKey(void);
+void ctrlMotorByKey(void);
+void modeChoice(void);
 
+void two1(void);
+void two2(void);
+void two3(void);
+void two4(void);
 /* External Function */
 
 #endif

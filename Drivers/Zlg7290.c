@@ -438,7 +438,7 @@ void ZLG7290ClearAll(void)
     for(i = 0; i < 8; i++)
     {
         WriteByte(0x00) ;
-        while(!ack) ;
+       ;// while(!ack) ;
     }
     Stop() ;
 }
@@ -463,7 +463,7 @@ void UpdataZLG7290(uint8 which,uint8 display,uint8 point)
     //while(!ack) ;
     WriteByte(0x07) ;
     //while(!ack) ;
-    WriteByte(0x60 | which) ;                           //???
+    WriteByte(0x60 | (which+4)% 8 ) ;                           //这里因为LED灯画反了所以使用了这种写法
     //while(!ack) ;
     WriteByte(display | (point << 7)) ;
     //while(!ack) ;
@@ -521,38 +521,32 @@ void KeyBoardShowLong(uint16 show)
 
 /***********************************************************************
 Function Name: ReadKeyAndDisplay
-Description: IIC读取四个键盘值并且显示
+Description: IIC读取三个键盘值并且显示
 Inputs:  None
 Outputs: None
-Notes: IIC读取四个键盘值并且同时显示，按下四个键之后再在后四位显示
+Notes: IIC读取三个键盘值并且同时显示，按下三个键之后再在后三位显示
 ************************************************************************/
-
+int  read[4] ;
 int ReadKeyAndDisplay(void)
 {
-	  int  read[4] ;
     int readkey = 0;
     uint8  keycounter = 0 ;
     
 
-    for(keycounter = 0; keycounter < 4; keycounter++) 
+    for(keycounter = 4; keycounter < 8; keycounter++) 
 		{
         while(ReadKeys() == 16); //按键没有按下时 一直循环扫描 直到 ReadKeys() ！= 16
-        read[keycounter] = ReadKeys();
-        if(read[keycounter] < 9)
+        read[keycounter-4] = ReadKeys();
+        if(read[keycounter-4] <=9)
         {
-            UpdataZLG7290(keycounter, read[keycounter], 0) ;
+            UpdataZLG7290(keycounter, read[keycounter-4], 0) ;
         }
         while(ReadKeys() != 16);//按键没松开时，等待。。。。
-    }	
-    readkey = read[0]*1000 + read[1]*100 + read[2]*10 + read[3];		
+    }
+		
+    readkey = read[0]*1000 + read[1]*100 + read[2]*10 + read[3];
+		
     Delay_ms(1000) ;
     ZLG7290ClearAll() ;
     return readkey;
 }
-
-
-
-
-
-
-

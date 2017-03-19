@@ -85,8 +85,6 @@ void MotorInit(void)
 {
     MotorIOInit();
     MotorTIMInit();
-		SetMotor1PWM(0);
- 		SetMotor2PWM(0);
 }
 
 /********************************************************************************************************
@@ -107,7 +105,7 @@ void SetMotor1PWM(s16 xpwm)
     else
     {
         MOTOR1_DIR_H;
-        TIM_SetCompare1(MOTOR_TIM,MOTOR_Period-xpwm);
+        TIM_SetCompare1(MOTOR_TIM,2000-xpwm);
     }
 }
 
@@ -129,7 +127,7 @@ void SetMotor2PWM(s16 xpwm)
     else
     {
         MOTOR2_DIR_H;
-        TIM_SetCompare3(MOTOR_TIM,MOTOR_Period-xpwm);
+        TIM_SetCompare3(MOTOR_TIM,2000-xpwm);
     }
 }
 //===========================================  End Of File  ===========================================//

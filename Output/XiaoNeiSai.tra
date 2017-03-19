@@ -32,7 +32,7 @@
 ### ADS-LD Output File: '.\Output\XiaoNeiSai.axf'
 ### ADS-LD Command File: '.\Output\XiaoNeiSai.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\Output\XiaoNeiSai.lnp', Handle=0x0000176C
+### Creating CmdFile '.\Output\XiaoNeiSai.lnp', Handle=0x00002A30
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\Output\XiaoNeiSai.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

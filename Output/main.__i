@@ -1,0 +1,6 @@
+-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\CMSIS -I.\Libraries\inc -I.\Drivers -I.\Libraries\src -I.\Output -I.\Startup -I.\User
+-I E:\Robot\Robot2017\RTE
+-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0
+-I C:\Keil_v5\ARM\CMSIS\Include
+-D__UVISION_VERSION="514" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD
+-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d "User\main.c"

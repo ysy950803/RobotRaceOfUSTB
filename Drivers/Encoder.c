@@ -22,7 +22,7 @@ void EncoderIOInit(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
 
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     GPIO_InitStructure.GPIO_Pin = ENCODER1_A_PIN|ENCODER1_B_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init(ENCODER1_GPIO, &GPIO_InitStructure);

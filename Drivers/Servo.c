@@ -45,7 +45,7 @@ void ServoTIMInit(void)
     TIM4_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;
     TIM4_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     TIM4_OCInitStructure.TIM_OutputNState=TIM_OutputState_Disable;
-    TIM4_OCInitStructure.TIM_Pulse = SERVO_Period >> 1;                       // TIM4 dutycycle = 50%
+    TIM4_OCInitStructure.TIM_Pulse =140; //SERVO_Period >> 1;                       // TIM4 dutycycle = 50%
     TIM4_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
     TIM4_OCInitStructure.TIM_OCIdleState = TIM_OCIdleState_Set;
     TIM4_OCInitStructure.TIM_OCNIdleState = TIM_OCNIdleState_Reset;
@@ -72,8 +72,6 @@ void ServoInit(void)
 {
     ServoIOInit();
     ServoTIMInit();
-	TIM_SetCompare1(SERVO_TIM,100);
-	TIM_SetCompare2(SERVO_TIM,100);
 }
 
 /********************************************************************************************************
