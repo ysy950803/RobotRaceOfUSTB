@@ -1,0 +1,15 @@
+..\List\motor_tim4.o: ..\src\Motor_TIM4.c
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\core_cm3.h
+..\List\motor_tim4.o: D:\Keil\ARM\RV31\INC\stdint.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\system_stm32f10x.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_conf.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_exti.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_gpio.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_rcc.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_tim.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\stm32f10x_usart.h
+..\List\motor_tim4.o: ..\src\STM32Lib\\misc.h
+..\List\motor_tim4.o: ..\src\Motor_TIM4.h
+..\List\motor_tim4.o: ..\src\TIM4.h

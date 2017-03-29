@@ -1,0 +1,16 @@
+..\List\follow.o: ..\src\Follow.c
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x.h
+..\List\follow.o: ..\src\STM32Lib\\core_cm3.h
+..\List\follow.o: D:\Keil\ARM\RV31\INC\stdint.h
+..\List\follow.o: ..\src\STM32Lib\\system_stm32f10x.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_conf.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_exti.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_gpio.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_rcc.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_tim.h
+..\List\follow.o: ..\src\STM32Lib\\stm32f10x_usart.h
+..\List\follow.o: ..\src\STM32Lib\\misc.h
+..\List\follow.o: ..\src\hal.h
+..\List\follow.o: ..\src\Follow.h
+..\List\follow.o: ..\src\Motor_TIM4.h

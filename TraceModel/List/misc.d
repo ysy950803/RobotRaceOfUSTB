@@ -1,0 +1,14 @@
+..\List\misc.o: ..\src\STM32Lib\misc.c
+..\List\misc.o: ..\src\STM32Lib\misc.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x.h
+..\List\misc.o: ..\src\STM32Lib\core_cm3.h
+..\List\misc.o: D:\Keil\ARM\RV31\INC\stdint.h
+..\List\misc.o: ..\src\STM32Lib\system_stm32f10x.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_conf.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_exti.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_gpio.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_rcc.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_tim.h
+..\List\misc.o: ..\src\STM32Lib\stm32f10x_usart.h
+..\List\misc.o: ..\src\STM32Lib\misc.h
